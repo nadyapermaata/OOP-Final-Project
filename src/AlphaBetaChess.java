@@ -28,7 +28,7 @@ public class AlphaBetaChess {
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "}};
     static int kingPositionC = 0, kingPositionL = 0;
-    static int globalDepth=1;
+    static int globalDepth=4;
     
     public static void init(int a) {
     	if(a == 0) {

@@ -10,7 +10,7 @@ public class MainFrame extends JFrame implements ActionListener{
 	static int turn = 0;
 	static int mode;
 	UserInterface ui = new UserInterface();
-	String[] gameMode = {"Normal Chess", "Deschess"};
+	String[] gameMode = {"Normal Chess", "DesCess"};
 	Object[] option={"Computer","Me"};
 	private JButton reset;
 	private JPanel toolboxPanel, toolboxPadding;
