@@ -47,25 +47,11 @@ public class AlphaBetaChess {
 
     }
     
-    public static void gameModes(int mode) {
-    	
-    	
-    }
-    public static boolean checkMate() {
-    	if(posibleMoves().length() < 4) {
-    		return true;
-    	}
-    	else {
-    		return false;
-    	}
-    }
-    
     public static String alphaBeta(int depth, int beta, int alpha, String move, int player) {
-        //return in the form of 1234b##########
         String list=posibleMoves();
         if (depth==0 || list.length()==0) {return move+(Rating.rating(list.length(), depth)*(player*2-1));}
         list=sortMoves(list);
-        player=1-player;//either 1 or 0
+        player=1-player;//1 atau 0
         for (int i=0;i<list.length();i+=5) {
             makeMove(list.substring(i,i+5));
             flipBoard();
@@ -112,7 +98,7 @@ public class AlphaBetaChess {
                 kingPositionC=8*Character.getNumericValue(move.charAt(2))+Character.getNumericValue(move.charAt(3));
             }
         } else {
-            //if pawn promotion
+            //pawn promotion
             chessBoard[1][Character.getNumericValue(move.charAt(0))]=" ";
             chessBoard[0][Character.getNumericValue(move.charAt(1))]=String.valueOf(move.charAt(3));
         }
@@ -125,7 +111,7 @@ public class AlphaBetaChess {
                 kingPositionC=8*Character.getNumericValue(move.charAt(0))+Character.getNumericValue(move.charAt(1));
             }
         } else {
-            //if pawn promotion
+            //pawn promotion
             chessBoard[1][Character.getNumericValue(move.charAt(0))]="P";
             chessBoard[0][Character.getNumericValue(move.charAt(1))]=String.valueOf(move.charAt(2));
         }
@@ -410,7 +396,6 @@ public class AlphaBetaChess {
                 } catch (Exception e) {}
             }
         }
-        //need to add casting later
         return list;
     }
     public static String sortMoves(String list) {

@@ -124,8 +124,8 @@ public class Rating {
     }
     public static int rateMoveablitly(int listLength, int depth, int material) {
         int counter=0;
-        counter+=listLength;//5 pointer per valid move
-        if (listLength==0) {//current side is in checkmate or stalemate
+        counter+=listLength;
+        if (listLength==0) {
             if (!AlphaBetaChess.kingSafe()) {//if checkmate
                 counter+=-200000*depth;
             } else {//if stalemate

@@ -69,7 +69,7 @@ public class UserInterface extends JPanel implements MouseListener, MouseMotionL
     @Override
     public void mousePressed(MouseEvent e) {
         if (e.getX()<8*squareSize &&e.getY()<8*squareSize) {
-            //if inside the board
+            //inside the board
             mouseX=e.getX();
             mouseY=e.getY();
             repaint();
@@ -78,7 +78,7 @@ public class UserInterface extends JPanel implements MouseListener, MouseMotionL
     @Override
     public void mouseReleased(MouseEvent e) {
         if (e.getX()<8*squareSize &&e.getY()<8*squareSize) {
-            //if inside the board
+            //inside the board
             newMouseX=e.getX();
             newMouseY=e.getY();
             if (e.getButton()==MouseEvent.BUTTON1) {
@@ -117,7 +117,7 @@ public class UserInterface extends JPanel implements MouseListener, MouseMotionL
                 String userPosibilities=AlphaBetaChess.posibleMoves();
                 int finish = 0;
                 if (userPosibilities.replaceAll(dragMove, "").length()<userPosibilities.length()) {
-                    //if valid move
+                    //valid move
                     AlphaBetaChess.makeMove(dragMove);
                     AlphaBetaChess.flipBoard();
                     System.out.println("Computer Possible Moves : \n" + AlphaBetaChess.posibleMoves());
