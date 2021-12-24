@@ -74,13 +74,13 @@ public class MainFrame extends JFrame implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
 			if (event.getSource() == reset) {
 				if(mode == 0) {
-					for(int i = 0; i < AlphaBetaChess.normalChessBoard.length ; i++) {
-						AlphaBetaChess.chessBoard[i] = AlphaBetaChess.normalChessBoard[i].clone();
+					for(int i = 0; i < ChessBoard.normalChessBoard.length ; i++) {
+						ChessBoard.chessBoard[i] = ChessBoard.normalChessBoard[i].clone();
 					}
 				}
 				else if (mode == 1) {
-					for(int i = 0; i < AlphaBetaChess.desChessBoard.length ; i++) {
-						AlphaBetaChess.chessBoard[i] = AlphaBetaChess.desChessBoard[i].clone();
+					for(int i = 0; i < ChessBoard.desChessBoard.length ; i++) {
+						ChessBoard.chessBoard[i] = ChessBoard.desChessBoard[i].clone();
 					}
 				}
 				repaint();

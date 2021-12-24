@@ -26,7 +26,7 @@ public class UserInterface extends JPanel implements MouseListener, MouseMotionL
         chessPiecesImage=new ImageIcon("ChessPieces.png").getImage();
         for (int i=0;i<64;i++) {
             int j=-1,k=-1;
-            switch (AlphaBetaChess.chessBoard[i/8][i%8]) {
+            switch (ChessBoard.chessBoard[i/8][i%8]) {
                 case "P": j=5; k=0;
                     break;
                 case "p": j=5; k=1;
@@ -83,7 +83,7 @@ public class UserInterface extends JPanel implements MouseListener, MouseMotionL
             newMouseY=e.getY();
             if (e.getButton()==MouseEvent.BUTTON1) {
                 String dragMove;
-                if (newMouseY/squareSize==0 && mouseY/squareSize==1 && "P".equals(AlphaBetaChess.chessBoard[mouseY/squareSize][mouseX/squareSize])) {
+                if (newMouseY/squareSize==0 && mouseY/squareSize==1 && "P".equals(ChessBoard.chessBoard[mouseY/squareSize][mouseX/squareSize])) {
                     //pawn promotion
                 	String temp[] = {"Queen","Rook","Bishop","Knight"};
                 	int promotion = JOptionPane.showOptionDialog(null,
@@ -96,26 +96,26 @@ public class UserInterface extends JPanel implements MouseListener, MouseMotionL
                 			temp[0]);
                 	switch(promotion) {
                 	case 0 : 
-                		dragMove=""+mouseX/squareSize+newMouseX/squareSize+AlphaBetaChess.chessBoard[newMouseY/squareSize][newMouseX/squareSize]+"QP";
+                		dragMove=""+mouseX/squareSize+newMouseX/squareSize+ChessBoard.chessBoard[newMouseY/squareSize][newMouseX/squareSize]+"QP";
                 		break;
                 	case 1 : 
-                		dragMove=""+mouseX/squareSize+newMouseX/squareSize+AlphaBetaChess.chessBoard[newMouseY/squareSize][newMouseX/squareSize]+"RP";
+                		dragMove=""+mouseX/squareSize+newMouseX/squareSize+ChessBoard.chessBoard[newMouseY/squareSize][newMouseX/squareSize]+"RP";
                 		break;
                 	case 2 : 
-                		dragMove=""+mouseX/squareSize+newMouseX/squareSize+AlphaBetaChess.chessBoard[newMouseY/squareSize][newMouseX/squareSize]+"BP";
+                		dragMove=""+mouseX/squareSize+newMouseX/squareSize+ChessBoard.chessBoard[newMouseY/squareSize][newMouseX/squareSize]+"BP";
                 		break;
                 	case 3 :
-                		dragMove=""+mouseX/squareSize+newMouseX/squareSize+AlphaBetaChess.chessBoard[newMouseY/squareSize][newMouseX/squareSize]+"KP";
+                		dragMove=""+mouseX/squareSize+newMouseX/squareSize+ChessBoard.chessBoard[newMouseY/squareSize][newMouseX/squareSize]+"KP";
                 		break;
                 	default : 
-                		dragMove=""+mouseX/squareSize+newMouseX/squareSize+AlphaBetaChess.chessBoard[newMouseY/squareSize][newMouseX/squareSize]+"QP";
+                		dragMove=""+mouseX/squareSize+newMouseX/squareSize+ChessBoard.chessBoard[newMouseY/squareSize][newMouseX/squareSize]+"QP";
                 	}
                 } else {
                     //regular move
-                    dragMove=""+mouseY/squareSize+mouseX/squareSize+newMouseY/squareSize+newMouseX/squareSize+AlphaBetaChess.chessBoard[newMouseY/squareSize][newMouseX/squareSize];
+                    dragMove=""+mouseY/squareSize+mouseX/squareSize+newMouseY/squareSize+newMouseX/squareSize+ChessBoard.chessBoard[newMouseY/squareSize][newMouseX/squareSize];
                 }
                 String userPosibilities=AlphaBetaChess.posibleMoves();
-                int finish = 0;
+//                int finish = 0;
                 if (userPosibilities.replaceAll(dragMove, "").length()<userPosibilities.length()) {
                     //valid move
                     AlphaBetaChess.makeMove(dragMove);

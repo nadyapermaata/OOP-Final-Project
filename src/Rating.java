@@ -82,7 +82,7 @@ public class Rating {
         int counter=0;
         int tempPositionC=AlphaBetaChess.kingPositionC;
         for (int i=0;i<64;i++) {
-            switch (AlphaBetaChess.chessBoard[i/8][i%8]) {
+            switch (ChessBoard.chessBoard[i/8][i%8]) {
                 case "P": {AlphaBetaChess.kingPositionC=i; if (!AlphaBetaChess.kingSafe()) {counter-=64;}}
                     break;
                 case "R": {AlphaBetaChess.kingPositionC=i; if (!AlphaBetaChess.kingSafe()) {counter-=500;}}
@@ -102,7 +102,7 @@ public class Rating {
     public static int rateMaterial() {
         int counter=0, bishopCounter=0;
         for (int i=0;i<64;i++) {
-            switch (AlphaBetaChess.chessBoard[i/8][i%8]) {
+            switch (ChessBoard.chessBoard[i/8][i%8]) {
                 case "P": counter+=100;
                     break;
                 case "R": counter+=500;
@@ -137,7 +137,7 @@ public class Rating {
     public static int ratePositional(int material) {
         int counter=0;
         for (int i=0;i<64;i++) {
-            switch (AlphaBetaChess.chessBoard[i/8][i%8]) {
+            switch (ChessBoard.chessBoard[i/8][i%8]) {
                 case "P": counter+=pawnBoard[i/8][i%8];
                     break;
                 case "R": counter+=rookBoard[i/8][i%8];
@@ -148,8 +148,17 @@ public class Rating {
                     break;
                 case "Q": counter+=queenBoard[i/8][i%8];
                     break;
-                case "A": if (material>=1750) {counter+=kingMidBoard[i/8][i%8]; counter+=AlphaBetaChess.posibleA(AlphaBetaChess.kingPositionC).length()*10;} else
-                {counter+=kingEndBoard[i/8][i%8]; counter+=AlphaBetaChess.posibleA(AlphaBetaChess.kingPositionC).length()*30;}
+                case "A": 
+            		ChessPiece[] piece = new ChessPiece[2];
+                	if (material>=1750) {
+                		counter+=kingMidBoard[i/8][i%8]; 
+                		piece[0] = new King(AlphaBetaChess.kingPositionC);
+                		counter+=piece[0].Possible().length()*10;
+                	} else {
+                		counter+=kingEndBoard[i/8][i%8]; 
+                		piece[1] = new King(AlphaBetaChess.kingPositionC);
+                		counter+=piece[1].Possible().length()*30;
+                	}
                     break;
             }
         }
